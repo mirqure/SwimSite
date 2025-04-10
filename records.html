@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayland Swim and Dive - Records</title>
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 1rem;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        nav {
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+        nav ul li {
+            float: left;
+        }
+        nav ul li a {
+            display: block;
+            color: #000000;
+            text-align: center;
+            padding: 1rem;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            background-color: #a04828;
+        }
+        main {
+            padding: 2rem;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: rgb(155, 145, 141);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #312d2d;
+
+        }
+        footer {
+            background-color: #a04828;
+            color: #ffffff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        /* Add this CSS to make the table scrollable */
+        #tableContainer {
+            max-height: 400px; /* Set the desired height */
+            overflow-y: auto; /* Enable vertical scrolling */
+            width: 100%; /* Ensure the container takes full width */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%; /* Ensure the table takes full width of the container */
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center; /* Center the text in table cells */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="Website.html" style="color: inherit; text-decoration: none;">Wayland Swim and Dive</a></h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="athlete-forms.html">Athlete Forms</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="records.html">Records</a></li>
+            <li><a href="cuts.html">Cuts</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <label for="recordType">Select Record Type to view:</label>
+        <select id="recordType" onchange="updateRecords()">
+            <option value="please select">Please select: </option>
+            <option value="girls varsity">Varsity Girls Records</option>
+            <option value="boys varsity">Varsity Boys Records</option>
+            <option value="girls freshman">Freshman Girls Records</option>
+            <option value="boys freshman">Freshman Boys Records</option>
+            <option value="girls pool">Pool Girls Records</option>
+            <option value="boys pool">Pool Boys Records</option>
+        </select>
+        <div id="recordsContent">
+            <!-- Records content will be updated here -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Wayland Swim and Dive</p>
+    </footer>
+    <script>
+        function updateRecords() {
+            const recordType = document.getElementById('recordType').value;
+            const recordsContent = document.getElementById('recordsContent');
+            let tableContent = '';
+    
+            if (recordType === 'girls varsity') {
+                tableContent = `
+                    <h3>Varsity Girls Records</h3>
+                    <div id="tableContainer">
+                        <table>
+                            <tr>
+                                <th>Event</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr>
+                                <td>200 Medley Relay</td>
+                                <td>
+                                    Lori Cliff<br>
+                                    Molly Pierce<br>
+                                    Mindy Lou<br>
+                                    Anna Downs
+                                </td>
+                                <td>2/14/15</td>
+                                <td>1:49.39</td>
+                            </tr>
+                            <tr>
+                                <td>200 Freestle</td>
+                                <td>Megan Pierce</td>
+                                <td>2/11/12</td>
+                                <td>1:54.72</td>
+                            </tr>
+                            <tr>
+                                <td>200 Individual Medley</td>
+                                <td>Molly Pierce</td>
+                                <td>2/14/15</td>
+                                <td>2:02.97</td>
+                            </tr>
+                            <tr>
+                                <td>50 Freestle</td>
+                                <td>Emily Wright</td>
+                                <td>2/13/10</td>
+                                <td>23.97</td>
+                            </tr>
+                            <tr>
+                                <td>Diving (6 Dives)</td>
+                                <td>Elizabeth Miller</td>
+                                <td>2/3/16</td>
+                                <td>323.15</td>
+                            </tr>
+                            <tr>
+                                <td>Diving (11 Dives)</td>
+                                <td>Elizabeth Miller</td>
+                                <td>2/21/16</td>
+                                <td>540.90</td>
+                            </tr>
+                            <tr>
+                                <td>100 Butterfly</td>
+                                <td>Molly Pierce</td>
+                                <td>2/8/14</td>
+                                <td>57.21</td>
+                            </tr>
+                            <tr>
+                                <td>500 Freestyle</td>
+                                <td>Megan Pierce</td>
+                                <td>2/11/12</td>
+                                <td>5:04.71</td>
+                            </tr>
+                            <tr>
+                                <td>200 Freestyle Relay</td>
+                                 <td>
+                                    Emily Wright<br>
+                                    Emily Downs<br>
+                                    Olivia Blahut<br>
+                                    ​Michelle Cunningham
+                                </td>
+                                <td>2/22/09</td>
+                                <td>1:37.02</td>
+                            </tr>
+                             <tr>
+                                <td>100 Backstroke</td>
+                                <td>Molly Pierce</td>
+                                <td>2/8/14</td>
+                                <td>58.62</td>
+                            </tr>
+                             <tr>
+                                <td>100 Breaststroke</td>
+                                <td>Molly Pierce</td>
+                                <td>2/14/15</td>
+                                <td>1:04.88</td>
+                            </tr>
+                             <tr>
+                                <td>400 Freestyle Relay</td>
+                                 <td>
+                                ​Saya Higano<br>
+                                Emily Downs<br>
+                                Megan Pierce<br>
+                                ​Michelle Cunningham        
+                                </td>
+                                <td>2/20/11</td>
+                                <td>3:33.87</td>
+                            </tr>
+                            <!-- Add more records as needed -->
+                        </table>
+                    </div>
+                `;
+            }
+                if (recordType === 'boys varsity') {
+                tableContent = `
+                    <h3>Varsity Boys Records</h3>
+                    <div id="tableContainer">
+                        <table>
+                            <tr>
+                                <th>Event</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr>
+                                <td>200 Medley Relay</td>
+                                <td>
+                                    Anthony Xue<br>
+                                    Jiming Xu<br>
+                                    Lucas Pralle<br>
+                                    Armen Abrahamian
+                                </td>
+                                <td>2/16/20</td>
+                                <td>1:35.26</td>
+                            </tr>
+                            <tr>
+                                <td>200 Freestyle</td>
+                                <td>Jason Shu</td>
+                                <td>2/6/21</td>
+                                <td>1:45.22</td>
+                            </tr>
+                            <tr>
+                                <td>200 Individual Medley</td>
+                                <td>Jason Shu</td>
+                                <td>2/10/21</td>
+                                <td>1:57.21</td>
+                            </tr>
+                            <tr>
+                                <td>50 Freestyle</td>
+                                <td>Sean Devlin</td>
+                                <td>2/19/17</td>
+                                <td>20.96</td>
+                            </tr>
+                            <tr>
+                                <td>Diving (6 Dives)</td>
+                                <td>Sam Cahaly</td>
+                                <td>1/24/20</td>
+                                <td>365.71</td>
+                            </tr>
+                            <tr>
+                                <td>Diving (11 Dives)</td>
+                                <td>Alex D'Ambrosio</td>
+                                <td>2/25/06</td>
+                                <td>514.70</td>
+                            </tr>
+                            <tr>
+                                <td>100 Butterfly</td>
+                                <td>Sean Devlin</td>
+                                <td>2/19/17</td>
+                                <td>50.89</td>
+                            </tr>
+                            <tr>
+                                <td>100 Freestyle</td>
+                                <td>Jason Shu</td>
+                                <td>1/7/22</td>
+                                <td>46.89</td>
+                            </tr>
+                            <tr>
+                                <td>500 Freestyle</td>
+                                <td>Emerson Kiefer</td>
+                                <td>2/19/17</td>
+                                <td>4:44.87</td>
+                            </tr>
+                            <tr>
+                                <td>200 Freestyle Relay</td>
+                                <td>
+                                    Asa Greenaway<br>
+                                    Andrew Brogan<br>
+                                    Nick Smith<br>
+                                    Sean Devlin
+                                </td>
+                                <td>2/18/18</td>
+                                <td>1:26.78</td>
+                            </tr>
+                            <tr>
+                                <td>100 Backstroke</td>
+                                <td>Anthony Xue</td>
+                                <td>2/16/20</td>
+                                <td>53.20</td>
+                            </tr>
+                            <tr>
+                                <td>100 Breaststroke</td>
+                                <td>Jiming Xu</td>
+                                <td>2/10/21</td>
+                                <td>56.95</td>
+                            </tr>
+                            <tr>
+                                <td>400 Freestyle Relay</td>
+                                <td>
+                                    Billy Burke<br>
+                                    Max Nelson<br>
+                                    Lucas Pralle<br>
+                                    Jason Shu
+                                </td>
+                                <td>2/10/21</td>
+                                <td>3:17.58</td>
+                            </tr>
+                            <!-- Add more records as needed -->
+                        </table>
+                    </div>
+                `;
+            } else if (recordType === 'girls freshman') {
+                tableContent = `
+                    <h3>Freshman Girls Records</h3>
+                    <div id="tableContainer">
+                        <table>
+                            <tr>
+                                <th>Event</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr>
+                                <td>Event 1</td>
+                                <td>Name 1</td>
+                                <td>Date 1</td>
+                                <td>Time 1</td>
+                            </tr>
+                            <tr>
+                                <td>Event 2</td>
+                                <td>Name 2</td>
+                                <td>Date 2</td>
+                                <td>Time 2</td>
+                            </tr>
+                            <!-- Add more records as needed -->
+                        </table>
+                    </div>
+                `;
+            } else if (recordType === 'boys freshman') {
+                tableContent = `
+                    <h3>Freshman Boys Records</h3>
+                    <div id="tableContainer">
+                        <table>
+                            <tr>
+                                <th>Event</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr>
+                                <td>Event 1</td>
+                                <td>Name 1</td>
+                                <td>Date 1</td>
+                                <td>Time 1</td>
+                            </tr>
+                            <tr>
+                                <td>Event 2</td>
+                                <td>Name 2</td>
+                                <td>Date 2</td>
+                                <td>Time 2</td>
+                            </tr>
+                            <!-- Add more records as needed -->
+                        </table>
+                    </div>
+                `;
+            } else if (recordType === 'girls pool') {
+                tableContent = `
+                    <h3>Pool Girls Records</h3>
+                    <div id="tableContainer">
+                        <table>
+                            <tr>
+                                <th>Event</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr>
+                                <td>Event 1</td>
+                                <td>Name 1</td>
+                                <td>Date 1</td>
+                                <td>Time 1</td>
+                            </tr>
+                            <tr>
+                                <td>Event 2</td>
+                                <td>Name 2</td>
+                                <td>Date 2</td>
+                                <td>Time 2</td>
+                            </tr>
+                            <!-- Add more records as needed -->
+                        </table>
+                    </div>
+                `;
+            } else if (recordType === 'boys pool') {
+                tableContent = `
+                    <h3>Pool Boys Records</h3>
+                    <div id="tableContainer">
+                        <table>
+                            <tr>
+                                <th>Event</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                            <tr>
+                                <td>Event 1</td>
+                                <td>Name 1</td>
+                                <td>Date 1</td>
+                                <td>Time 1</td>
+                            </tr>
+                            <tr>
+                                <td>Event 2</td>
+                                <td>Name 2</td>
+                                <td>Date 2</td>
+                                <td>Time 2</td>
+                            </tr>
+                            <!-- Add more records as needed -->
+                        </table>
+                    </div>
+                `;
+            }
+    
+            recordsContent.innerHTML = tableContent;
+        }
+    </script>
+</body>
+</html>
