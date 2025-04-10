@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayland Swim and Dive - Home</title>
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        header {
+        background-color: #ffffff; /* Change background to white */
+        color: #000000; /* Change font color to black */
+        padding: 1rem;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+        nav {
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+        nav ul li {
+            float: left;
+        }
+        nav ul li a {
+            display: block;
+            color: #000000;
+            text-align: center;
+            padding: 1rem;
+            text-decoration: none;
+        }
+        nav ul li a:hover {
+            background-color: #a04828;
+        }
+        main {
+            padding: 2rem;
+            position: relative;
+        }
+        .slideshow-container {
+        max-width: 100%;
+        position: relative;
+        margin: auto;
+        height: 95vh; /* Set the desired height */
+        overflow: hidden;
+    }
+    .mySlides {
+        display: none;
+        height: 100%;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .prev, .next {
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        z-index: 1; /* Ensure arrows are above the images */
+    }
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+        }
+        footer {
+            background-color: #a04828;
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="Website.html" style="color: inherit; text-decoration: none;">Wayland Swim and Dive</a></h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="athlete-forms.html">Athlete Forms</a></li>
+            <li><a href="schedule.html">Schedule</a></li>
+            <li><a href="records.html">Records</a></li>
+            <li><a href="cuts.html">Cuts</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <body>
+        <!-- ...existing code... -->
+        <main>
+            <div class="slideshow-container">
+                <div class="mySlides" style="background-image: url('IMG_3285.jpg');"></div>
+                <div class="mySlides" style="background-image: url('IMG_3288.jpg');"></div>
+                <div class="mySlides" style="background-image: url('IMG_3282.jpg');"></div>
+            </div>
+        </main>
+        <!-- ...existing code... -->
+        <script>
+            let slideIndex = 0;
+            let slideInterval;
+    
+            function showSlides() {
+                let slides = document.getElementsByClassName("mySlides");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {slideIndex = 1}
+                slides[slideIndex-1].style.display = "block";
+                slideInterval = setTimeout(showSlides, 2000); // Change image every 2 seconds
+            }
+    
+            function plusSlides(n) {
+                clearTimeout(slideInterval); // Disable the automatic slideshow
+                slideIndex += n;
+                let slides = document.getElementsByClassName("mySlides");
+                if (slideIndex > slides.length) {slideIndex = 1}
+                if (slideIndex < 1) {slideIndex = slides.length}
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slides[slideIndex-1].style.display = "block";
+            }
+    
+            showSlides();
+        </script>
+    </body>
+</html>
